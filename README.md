@@ -23,6 +23,21 @@ tail -2000 access_log | cut -d- -f1 | grep -v 172.16.0.2 | sort | uniq
 
 > Replace `172.16.0.2` with your actual server IP. This filters out your own IP from the logs.
 
+
+<details>
+<summary>Find IPs in Windows IIS</summary>
+
+1. Donwload LogParser(https://www.microsoft.com/en-us/download/details.aspx?id=24659)
+2. Use the next command to get list of IPs:
+```bash
+LogParser "SELECT c-ip, count(*) as Hits FROM "C:\inetpub\logs\LogFiles\W3SVC14\u_ex250404.log" GROUP BY c-ip ORDER BY Hits DESC" -o:DataGrid
+```
+> Replace `\W3SVC14\u_ex250404.log` with your actual log file.
+3. Make a list of all the IPs
+
+</details>
+
+
 ---
 
 ## 📥 Step 3: Use the DDoS Scanner
