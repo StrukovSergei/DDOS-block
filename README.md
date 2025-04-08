@@ -130,6 +130,62 @@ To block IPs on OPNsense:
 ---
 
 <details>
+<summary>🔒 FortiGate Firewall</summary>
+
+Open CLI terminal top right
+
+Use the next to block all the IPs
+```bash
+config firewall address
+    edit "Blocked-IP-472"
+        set subnet 185.206.81.221 255.255.255.255
+    next
+    edit "Blocked-IP-473"
+        set subnet 185.206.80.239 255.255.255.255
+    next
+    edit "Blocked-IP-474"
+        set subnet 185.206.81.60 255.255.255.255
+    next
+    edit "Blocked-IP-475"
+        set subnet 185.206.80.78 255.255.255.255
+    next
+end
+```
+> Do not `end` until all the IPs are there.
+
+
+Add to block group:
+```bash
+config firewall addrgrp
+    edit "Blocked-IPs-Group"
+        set member "Blocked-IP-472" "Blocked-IP-473" "Blocked-IP-474" "Blocked-IP-475"
+    next
+end
+```
+And block the group:
+```bash
+config firewall policy
+   edit 0
+      set name "Deny Blocked IPs"
+      set srcintf "any"
+      set dstintf "any"
+      set srcaddr "Blocked-IPs-Group"
+      set dstaddr "all"
+      set action deny
+      set schedule "always"
+      set service "ALL"
+      set logtraffic all
+   next
+end
+```
+
+> This will block all listed IPs from accessing the server.
+
+</details>
+
+---
+
+<details>
 <summary>🔒 SophosXG Firewall</summary>
 
 Create a firewall rule:
