@@ -37,16 +37,16 @@ LogParser "SELECT c-ip, count(*) as Hits FROM "C:\inetpub\logs\LogFiles\W3SVC14\
 
 </details>
 
+
+
+<details>
+<summary>Check IPs in domlogs</summary>
+
 > Check IPs in domlogs
 ```bash
 tail -9999 /var/log/apache2/domlogs/dsit.co.il-ssl_log  | awk -F' ' '{print $1}' | sort | uniq -c | sort -n
 
 ```
-
-<details>
-<summary>Check IPs in domlogs</summary>
-
-
 
 </details>
 
