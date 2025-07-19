@@ -87,6 +87,26 @@ cat blocklist.txt | xargs -I {} csf -d {}
 ---
 
 <details>
+<summary>🔒 Firewalld </summary>
+
+To block all malicious IPs:
+
+Making a new txt file inside the server, and paste all the malicious IPs inside.
+```bash
+nano blocklist.txt
+```
+After you make the file, you block them with : 
+```bash
+cat blocklist.txt | xargs -I {} firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="{}" drop'
+firewall-cmd --reload
+
+```
+
+</details>
+
+---
+
+<details>
 <summary>🔒 Fail2Ban</summary>
 
 To block IPs manually with Fail2Ban:
