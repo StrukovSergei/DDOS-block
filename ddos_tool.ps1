@@ -175,7 +175,7 @@ do {
                     if ($ConfidenceScore -gt 15) {
                         Write-Host "Confidence Score: $ConfidenceScore" -ForegroundColor Red
                         Write-Host "IP has been registered to output file!" -ForegroundColor red
-                        echo $AbuseIPDB.data.ipAddress >> output_AbuseIPdb.txt
+                        Add-Content -Path 'output_AbuseIPdb.txt' -Value ($AbuseIPDB.data.ipAddress -join '')
                     } else {
                         Write-Output "Confidence Score: $ConfidenceScore"
                     }
@@ -322,3 +322,4 @@ do {
         }
     }
 } while ($true)
+
