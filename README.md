@@ -87,6 +87,24 @@ cat blocklist.txt | xargs -I {} csf -d {}
 ---
 
 <details>
+<summary>🔒 Imunify360</summary>
+
+Make sure Imunify360 is installed. To block all malicious IPs:
+
+Making a new txt file inside the server, and paste all the malicious IPs inside.
+```bash
+nano blocklist.txt
+```
+After you make the file, you block them with : 
+```bash
+cat blocklist.txt | xargs -I {} imunify360-agent ip-list local add --purpose drop {} --comment "manual block"
+```
+
+</details>
+
+---
+
+<details>
 <summary>🔒 Firewalld </summary>
 
 To block all malicious IPs:
