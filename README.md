@@ -127,10 +127,15 @@ firewall-cmd --reload
 <details>
 <summary>🔒 Fail2Ban</summary>
 
-To block IPs manually with Fail2Ban:
+To block all malicious IPs:
 
+Making a new txt file inside the server, and paste all the malicious IPs inside.
 ```bash
-echo ' PASTE ALL THE IPS HERE ' | xargs -I {} fail2ban-client set plesk-apache banip {}
+nano blocklist.txt
+```
+After you make the file, you block them with : 
+```bash
+cat blocklist.txt | xargs -n1 -I {} fail2ban-client set plesk-permanent-ban banip {}
 ```
 
 
